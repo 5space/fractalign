@@ -1,0 +1,40 @@
+.Card-container {
+  margin: 5px;
+  border: 1px solid #ccc;
+  float: left;
+  width: 240px;
+  height: 310px;
+  position: relative;
+}
+
+.Card-container:hover {
+  border: 1px solid #777;
+}
+
+.Card-container canvas {
+  width: 100%;
+  height: auto;
+}
+
+.Card-description {
+  padding-bottom: 5px;
+  display: -webkit-box;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-size: 10pt;
+}
+
+.Card-title {
+  padding-bottom: 5px;
+  font-size: 10pt;
+}
+
+.Card-byline {
+  font-size: 10pt;
+  position: absolute;
+  padding-right: 5px;
+  bottom: 0;
+  right: 0;
+}

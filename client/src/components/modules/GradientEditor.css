@@ -1,0 +1,21 @@
+.GradientEditor-container {
+    grid-column: 1;
+    grid-row: 2;
+}
+
+.GradientEditor-gradient {
+    width: auto;
+    height: 30px;
+    margin-bottom: 10px;
+}
+
+.GradientEditor-subcontainer {
+    justify-content: space-between;
+    width: auto;
+}
+
+.GradientEditor-iterinput {
+    width: 40px;
+    height: 18px;
+    border-radius: 0px 7px 7px 0px;    
+}

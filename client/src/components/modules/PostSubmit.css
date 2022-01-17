@@ -1,0 +1,42 @@
+.PostSubmit-title,
+.PostSubmit-desc,
+.PostSubmit-button {
+    font-family: "Open Sans";
+    font-size: 14px;
+    padding: var(--s) var(--s);
+}
+
+.PostSubmit-title {
+    border: var(--darkgrey) 1px solid;
+    border-radius: var(--xs);
+    transition: box-shadow 0.1s;
+    margin: var(--s);
+    display: block;
+}
+
+.PostSubmit-desc {
+    border: var(--darkgrey) 1px solid;
+    border-radius: var(--xs);
+    transition: box-shadow 0.1s;
+    width: 70%;
+    height: 150px;
+    margin: var(--s);
+    display: block;
+}
+
+.PostSubmit-container {
+    border: var(--darkgrey) 3px solid;
+    background-color: var(--white);
+    padding: var(--s);
+}
+
+.PostSubmit-button {
+    background-color: var(--primary--dim);
+    border-radius: var(--xs);
+    color: var(--white);
+    margin: 0 var(--s);
+}
+
+.PostSubmit-button:hover {
+    background-color: var(--primary);
+}

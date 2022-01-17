@@ -1,0 +1,39 @@
+.Editor-container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+
+    border: var(--darkgrey) 3px solid;
+    background-color: var(--white);
+    padding: var(--m);
+    margin-bottom: var(--l);
+}
+
+.Editor-subcontainer {
+    grid-column: 2;
+    grid-row: 1 / 3;
+}
+
+.Editor-fractal {
+    grid-column: 1;
+    grid-row: 1;
+}
+
+.Editor-renderbutton {
+    grid-column: 2;
+    grid-row: 2;
+    width: auto;
+    height: auto;
+}
+
+.Editor-paraminput {
+    width: 60px;
+    height: 18px;
+    float: right;
+}
+
+.Editor-singleparam {
+    width: auto;
+    justify-content: space-between;
+}
