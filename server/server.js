@@ -11,10 +11,11 @@ const path = require("path"); // provide utilities for working with file and dir
 const api = require("./api");
 const auth = require("./auth");
 
+require("dotenv").config();
+
 // Server configuration below
 // TODO change connection URL after setting up your own database
-const mongoConnectionURL =
-    "mongodb+srv://objobj:IHTFP7M0JseSSyS@cluster0.m1zxx.mongodb.net/fractals?retryWrites=true&w=majority";
+const mongoConnectionURL = process.env.MONGO_ID;
 // TODO change database name to the name you chose
 const databaseName = "fractals";
 
