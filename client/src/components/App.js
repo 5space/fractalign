@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import NavBar from "./modules/NavBar.js";
 import { Router } from "@reach/router";
 import NotFound from "./pages/NotFound.js";
+import SinglePost from "./pages/SinglePost.js";
 import Gallery from "./pages/Gallery.js";
 import Profile from "./pages/Profile.js";
 import Editor from "./pages/Editor.js";
@@ -61,7 +62,7 @@ class App extends Component {
                         <Gallery path="/" userId={this.state.userId} />
                         <Profile path="/profile/:userId" />
                         <Editor path="/editor/" userId={this.state.userId} />
-                        {/* <SinglePost path="/post/:postId" /> */}
+                        <SinglePost path="/post/:postId" userId={this.state.userId}/>
                         <NotFound default />
                     </Router>
                 </div>

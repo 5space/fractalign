@@ -14,8 +14,23 @@
     width: auto;
 }
 
+.GradientEditor-color {
+    padding: 0;
+    width: 150%;
+    height: 150%;
+    margin: -25%;
+}
+
 .GradientEditor-iterinput {
     width: 40px;
     height: 18px;
     border-radius: 0px 7px 7px 0px;    
+}
+
+.GradientEditor-wrapper {
+    border-radius: 7px 0px 0px 7px;
+    cursor: pointer;
+    overflow: hidden;
+    width: 20px;
+    height: auto;
 }

@@ -16,7 +16,6 @@ class PostSubmit extends Component {
         event.preventDefault();
         this.props.onSubmit && this.props.onSubmit(this.state.valueTitle, this.state.valueDesc);
         // TODO: Temporary to provide user feedback
-        document.location.reload();
     };
 
     handleTitleChange = (event) => {
@@ -49,9 +48,9 @@ class PostSubmit extends Component {
             />
             <button
                 type="submit"
-                value="Submit"
                 onClick={this.handleSubmit}
-                className="PostSubmit-button u-bold">
+                className="PostSubmit-button u-bold"
+                disabled={this.state.valueTitle === ""}>
                 Post!
             </button>
         </div>;

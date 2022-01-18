@@ -1,6 +1,5 @@
 const mongoose = require("mongoose");
 
-//define a comment schema for the database
 // const ParamSchema = new mongoose.Schema({
 //     name: String,
 //     value: Number
@@ -20,6 +19,7 @@ const PostSchema = new mongoose.Schema({
     creator_name: String,
     title: String,
     description: String,
+    timestamp: Number,
     fractal: {
         fractalType: String,
         x_min: Number,

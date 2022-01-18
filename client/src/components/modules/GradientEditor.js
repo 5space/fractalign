@@ -1,6 +1,7 @@
 import React, { Component } from "react";
-import { hexToRgb } from "../../utilities.js";
+import { hexToRgb, rgbToHex } from "../../utilities.js";
 
+import "../../utilities.css";
 import "./GradientEditor.css";
 
 class GradientEditor extends Component {
@@ -41,12 +42,14 @@ class GradientEditor extends Component {
     }
 
     getInputItems() {
-        var arr = [<br/>];
+        var arr = [];
         for (let i = 0; i<this.state.gradient.length; i++) {
             let elem = this.state.gradient[i];
-            arr.push(<div className="u-flex">
-                <input type="color" onChange={this.updateNthColor(i)}></input>
-                <input className="GradientEditor-iterinput" type="text" value={elem.iter} onChange={this.updateNthGradient(i)}></input>
+            arr.push(<div className="u-flex" key={`Gradient_${i}`}>
+                <div className="GradientEditor-wrapper">
+                    <input className="GradientEditor-color" type="color" value={rgbToHex(elem.color)} onChange={this.updateNthColor(i)}></input>
+                </div>
+                <input className="GradientEditor-iterinput" style={{fontFamily: "inherit"}} type="text" value={elem.iter} onChange={this.updateNthGradient(i)}></input>
             </div>);
         }
         return arr;

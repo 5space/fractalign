@@ -1,11 +1,12 @@
-.Profile-container {
+.Gallery-container {
     border: var(--darkgrey) 3px solid;
     background-color: var(--white);
     padding: var(--m);
     margin: 0 auto;
+    width: 1008px;
 }
 
-.Profile-subcontainer {
+.Gallery-subcontainer {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
 }

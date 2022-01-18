@@ -12,8 +12,12 @@ const auth = require("./auth");
 const router = express.Router();
 
 router.get("/posts", (req, res) => {
-    // empty selector means get all documents
-    Post.find({}).then((posts) => res.send(posts));
+    if (req.userId) {
+        Post.find({creator_id: req.userid}).then((posts) => res.send(posts));
+    } else {
+        // empty selector means get all documents
+        Post.find({}).then((posts) => res.send(posts));
+    }
 });
 
 router.post("/post", auth.ensureLoggedIn, (req, res) => {
@@ -22,11 +26,20 @@ router.post("/post", auth.ensureLoggedIn, (req, res) => {
         creator_name: req.user.name,
         title: req.body.title,
         description: req.body.description,
+        timestamp: Date.now(), // prevent clientside timestamp spoofing
         fractal: req.body.fractal
     });
 
     newPost.save().then((post) => res.send(post));
 });
+
+router.get("/post", (req, res) => {
+    Post.findById(req.query.postid).then((post) => {
+        res.send(post);
+    });
+});
+
+// TODO: Add comment functionality
 
 // router.get("/comment", (req, res) => {
 //     Comment.find({ parent: req.query.parent }).then((comments) => {

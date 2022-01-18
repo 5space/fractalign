@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import Card from "../modules/Card.js";
 
 import { get } from "../../utilities";
+import "./Gallery.css";
 
 class Gallery extends Component {
     constructor(props) {
@@ -22,18 +23,27 @@ class Gallery extends Component {
     }
 
     render() {
-        var postsList = <div>No posts! (maybe check back later in case the API is down)</div>;
-        if (this.state.posts.length != 0) {
-            postsList = this.state.posts.map((postObj) => (
-                <Card
-                  key={`Card_${postObj._id}`}
-                  post={postObj}
-                />
-            ));
+        if (this.state.posts.length == 0) {
+            return <div>No posts! (maybe check back later in case the API is down)</div>
         }
-        return <>
-            {postsList}
-        </>;
+        var i = 0;
+        var postsList = this.state.posts.map((postObj) => (
+            <Card
+                key={`Card_${postObj._id}`}
+                post={postObj}
+                style={{
+                    gridColumn: (i % 4) + 1, // 1-indexed
+                    gridRow: (i++ >> 2) + 1
+                }}
+            />
+        ));
+        return <div className="Gallery-container">
+            <h1 className="u-textCenter">Posts</h1>
+            <hr/>
+            <div className="Gallery-subcontainer">
+                {postsList}
+            </div>
+        </div>;
     }
 }
 

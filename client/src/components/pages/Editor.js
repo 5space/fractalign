@@ -12,7 +12,6 @@ class Editor extends Component {
         super(props);
         this.renderer = React.createRef();
         this.state = {
-            user: undefined,
             fractal: {
                 fractalType: "mandelbrot",
                 x_min: -2,
@@ -25,23 +24,27 @@ class Editor extends Component {
                 },
                 gradient: [
                     {
-                        iter: 10,
-                        color: {r:0, g:0, b:0, a:1}
+                        iter: 0,
+                        color: {r:0, g:0, b:64}
                     },
                     {
                         iter: 20,
-                        color: {r:255, g:0, b:0, a:1}
-                    },
-                    {
-                        iter: 30,
-                        color: {r:0, g:0, b:0, a:1}
+                        color: {r:255, g:160, b:0}
                     },
                     {
                         iter: 40,
-                        color: {r:0, g:0, b:0, a:1}
+                        color: {r:255, g:0, b:0}
+                    },
+                    {
+                        iter: 60,
+                        color: {r:144, g:24, b:100}
+                    },
+                    {
+                        iter: 256,
+                        color: {r:0, g:128, b:255}
                     }
                 ]
-            },
+            }
         };
     }
 
@@ -51,23 +54,35 @@ class Editor extends Component {
             description: desc,
             fractal: this.state.fractal
         };
-        post("/api/post", body);
+        post("/api/post", body).then((postObj) => {
+            window.open("/post/" + postObj._id);
+        });
     }
 
-    // callback
-    updateFractal(fractalObj) {
-        this.renderer.updateFractal(fractalObj);
+    // callbacks
+    updateFractal = (fractalObj) => {
+        this.setState({fractal: fractalObj});
+        this.updateRenderer(fractalObj);
+    }
+
+    updateRenderer = (fractalObj) => {
+        this.renderer.current.updateFractal(fractalObj);
     }
 
     updateParam(key) {
         return (event) => {
             var obj = {...this.state.fractal};
             if (typeof(obj.params[key]) === "number") {
-                obj.params[key] = parseFloat(event.target.value);
+                var val = parseFloat(event.target.value);
+                if (!isNaN(val)) {
+                    obj.params[key] = val;
+                    this.setState({fractal: obj});
+                }
             } else {
                 obj.params[key] = event.target.value;
+                this.setState({fractal: obj});
             }
-            this.setState({fractal: obj});
+            event.target.value = "" + obj.params[key];
         }
     }
 
@@ -79,6 +94,7 @@ class Editor extends Component {
                 obj[key] = val;
                 this.setState({fractal: obj});
             }
+            event.target.value = "" + obj[key];
         }
     }
 
@@ -93,42 +109,42 @@ class Editor extends Component {
             value = this.state.fractal.params[key];
             paramsList.push(<div className="Editor-singleparam u-flex">
                 <label>{key}</label>
-                <input className="Editor-paraminput" type="text" value={value} onChange={this.updateParam(key)}></input>
+                <input className="Editor-paraminput" style={{fontFamily: "inherit"}} type="text" defaultValue={value} onBlur={this.updateParam(key)}></input>
             </div>);
         }
         return paramsList;
     }
 
     render() {
-        return <div>
+        return <>
             <div className="Editor-container">
-                <FractalRenderer className="Editor-fractal" ref={this.renderer} fractal={this.state.fractal} width="720" height="540"/>
-                <GradientEditor className="Editor-gradient" fractal={this.state.fractal} onChange={this.updateFractal}/>
+                <FractalRenderer className="Editor-fractal" ref={this.renderer} fractal={this.state.fractal} updateFractal={this.updateFractal} width="720" height="540"/>
+                <GradientEditor className="Editor-gradient" fractal={this.state.fractal} onChange={this.updateRenderer}/>
                 <div className="Editor-subcontainer">
                     <div className="Editor-singleparam u-flex">
                         <label>X</label>
                         <div className="u-flex">
-                            <input className="Editor-paraminput" type="text" value={this.state.fractal.x_min} onChange={this.updateCoord("x_min")}></input>
-                            <input className="Editor-paraminput" type="text" value={this.state.fractal.x_max} onChange={this.updateCoord("x_max")}></input>
+                            <input className="Editor-paraminput" style={{fontFamily: "inherit"}} type="text" defaultValue={this.state.fractal.x_min} onBlur={this.updateCoord("x_min")}></input>
+                            <input className="Editor-paraminput" style={{fontFamily: "inherit"}} type="text" defaultValue={this.state.fractal.x_max} onBlur={this.updateCoord("x_max")}></input>
                         </div>
                     </div>
                     <div className="Editor-singleparam u-flex">
                         <label>Y</label>
                         <div className="u-flex">
-                            <input className="Editor-paraminput" type="text" value={this.state.fractal.y_min} onChange={this.updateCoord("y_min")}></input>
-                            <input className="Editor-paraminput" type="text" value={this.state.fractal.y_max} onChange={this.updateCoord("y_max")}></input>
+                            <input className="Editor-paraminput" style={{fontFamily: "inherit"}} type="text" defaultValue={this.state.fractal.y_min} onBlur={this.updateCoord("y_min")}></input>
+                            <input className="Editor-paraminput" style={{fontFamily: "inherit"}} type="text" defaultValue={this.state.fractal.y_max} onBlur={this.updateCoord("y_max")}></input>
                         </div>
                     </div>
                     <br></br>
-                    <label className="u-bold">Parameters</label> 
+                    <label className="u-bold">Parameters</label>
                     {this.getParamsList()}
                 </div>
-                <button className="Editor-renderbutton" type="submit" onClick={() => {this.renderer.current.updateFractal(this.state.fractal);}}>
+                <button className="Editor-renderbutton u-bold" type="submit" onClick={() => {this.renderer.current.updateFractal(this.state.fractal);}}>
                     Render
                 </button>
             </div>
-            <PostSubmit onSubmit={this.handleSubmit}/>
-        </div>;
+            {this.props.userId ? <PostSubmit onSubmit={this.handleSubmit}/> : null}
+        </>;
     }
 }
 

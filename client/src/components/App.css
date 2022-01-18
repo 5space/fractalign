@@ -1,5 +1,6 @@
 .App-container {
-  max-width: 960px;
+  /* max-width: 960px; */
+  width: fit-content;
   padding: var(--m) var(--m);
   margin: auto;
 }

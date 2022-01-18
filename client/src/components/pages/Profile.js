@@ -1,59 +1,55 @@
 import React, { Component } from "react";
 import { get } from "../../utilities";
+import Card from "../modules/Card.js";
 
 import "../../utilities.css";
 import "./Profile.css";
 
 class Profile extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      user: undefined,
-      catHappiness: 0,
-    };
-  }
-
-  componentDidMount() {
-    document.title = "Profile Page";
-    get(`/api/user`, { userid: this.props.userId }).then((user) => this.setState({ user: user }));
-  }
-
-  incrementCatHappiness = () => {
-    this.setState({
-      catHappiness: this.state.catHappiness + 1,
-    });
-  };
-
-  render() {
-    if (!this.state.user) {
-      return <div> Loading! </div>;
+    constructor(props) {
+        super(props);
+        this.state = {
+            user: undefined,
+            posts: []
+        };
     }
-    return (
-      <>
-        <div className="Profile-avatarContainer">
-          <div className="Profile-avatar" />
-        </div>
-        <h1 className="Profile-name u-textCenter">{this.state.user.name}</h1>
-        <hr className="Profile-line" />
-        <div className="u-flex">
-          <div className="Profile-subContainer u-textCenter">
-            <h4 className="Profile-subTitle">About Me</h4>
-            <div id="profile-description">
-              Extra Challenge: Modify catbook to show a personalized description here!
+
+    componentDidMount() {
+        document.title = "Fractalign | Profile";
+        get("/api/user", { userid: this.props.userId }).then((user) => this.setState({ user: user }));
+        get("/api/posts", { userid: this.props.userId }).then((postObjs) => {
+            let reversed = postObjs.reverse();
+            reversed.map((postObj) => {
+                this.setState({ posts: this.state.posts.concat([postObj])});
+            });
+        });
+    }
+
+    render() {
+        if (!this.state.user) {
+            return <div>Loading...</div>;
+        }
+
+        var postsList = <div>No posts! (maybe check back later in case the API is down)</div>;
+        if (this.state.posts.length != 0) {
+            postsList = this.state.posts.map((postObj) => (
+                <Card
+                  key={`Card_${postObj._id}`}
+                  post={postObj}
+                />
+            ));
+        }
+
+        return (
+            <div className="Profile-container">
+                <h1 className="Profile-name u-textCenter">{this.state.user.name}</h1>
+                <hr/>
+                <div className="Profile-subcontainer">
+                    {postsList}
+                </div>
             </div>
-          </div>
-          <div className="Profile-subContainer u-textCenter">
-            <h4 className="Profile-subTitle">Cat Happiness</h4>
-            <CatHappiness catHappiness={this.state.catHappiness} />
-          </div>
-          <div className="Profile-subContainer u-textCenter">
-            <h4 className="Profile-subTitle">My Favorite Type of Cat</h4>
-            <div id="favorite-cat">corgi</div>
-          </div>
-        </div>
-      </>
-    );
-  }
+        );
+    }
 }
 
 export default Profile;

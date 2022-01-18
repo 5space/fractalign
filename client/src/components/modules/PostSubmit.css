@@ -40,3 +40,8 @@
 .PostSubmit-button:hover {
     background-color: var(--primary);
 }
+
+.PostSubmit-button:disabled {
+    background-color: var(--darkgrey);
+    color: #888;
+}

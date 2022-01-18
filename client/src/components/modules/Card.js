@@ -15,7 +15,7 @@ class Card extends Component {
     render() {
         return (
             <div className="Card-container" onClick={() => {window.location.assign(`/post/${this.props.post._id}`);}}>
-                <FractalRenderer fractal={this.props.post.fractal} width="400" height="300"/>
+                <FractalRenderer fractal={this.props.post.fractal} width="240" height="180"/>
                 <div className="Card-title u-bold">
                     {this.props.post.title}
                 </div>
