@@ -26,9 +26,9 @@ const PostSchema = new mongoose.Schema({
         x_max: Number,
         y_min: Number,
         y_max: Number,
-        params: Object,
-        gradient: [ColorSchema]
-    }
+        params: Object
+    },
+    gradient: [ColorSchema]
 });
 
 // compile model from schema

@@ -21,18 +21,22 @@
     grid-row: 1;
 }
 
-.Editor-renderbutton {
+.Editor-buttonpanel {
     grid-column: 2;
     grid-row: 2;
     width: auto;
     height: auto;
+    background-color: black;
+}
+
+.Editor-renderbutton {
+    width: 100%;
     font-family: inherit;
 }
 
-.Editor-paraminput {
-    width: 60px;
-    height: 18px;
-    float: right;
+.Editor-resetbutton {
+    width: 50%;
+    font-family: inherit;
 }
 
 .Editor-singleparam {

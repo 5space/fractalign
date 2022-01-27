@@ -1,13 +1,13 @@
 import React, { Component } from "react";
-import NavBar from "./modules/NavBar.js";
+import NavBar from "./modules/NavBar";
 import { Router } from "@reach/router";
-import NotFound from "./pages/NotFound.js";
-import SinglePost from "./pages/SinglePost.js";
-import Gallery from "./pages/Gallery.js";
-import Profile from "./pages/Profile.js";
-import Editor from "./pages/Editor.js";
+import NotFound from "./pages/NotFound";
+import SinglePost from "./pages/SinglePost";
+import Gallery from "./pages/Gallery";
+import Profile from "./pages/Profile";
+import Editor from "./pages/Editor";
 
-import { get, post } from "../utilities";
+import { get, post } from "../utils_api";
 
 // to use styles, import the necessary CSS files
 import "../utilities.css";
@@ -21,7 +21,7 @@ class App extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            userId: undefined,
+            userId: undefined
         };
     }
 

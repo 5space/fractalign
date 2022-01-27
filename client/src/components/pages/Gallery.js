@@ -1,7 +1,7 @@
 import React, { Component } from "react";
-import Card from "../modules/Card.js";
+import Card from "../modules/Card";
 
-import { get } from "../../utilities";
+import { get } from "../../utils_api";
 import "./Gallery.css";
 
 class Gallery extends Component {

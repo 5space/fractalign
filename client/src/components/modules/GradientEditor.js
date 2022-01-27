@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { hexToRgb, rgbToHex } from "../../utilities.js";
+import { hexToRgb, rgbToHex } from "../../utils_fractal";
 
 import "../../utilities.css";
 import "./GradientEditor.css";
@@ -8,7 +8,7 @@ class GradientEditor extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            gradient: this.props.fractal.gradient
+            gradient: this.props.gradient
         };
     }
 

@@ -1,6 +1,6 @@
 import React, { Component } from "react";
-import { get } from "../../utilities";
-import Card from "../modules/Card.js";
+import { get } from "../../utils_api";
+import Card from "../modules/Card";
 
 import "../../utilities.css";
 import "./Profile.css";
@@ -16,8 +16,8 @@ class Profile extends Component {
 
     componentDidMount() {
         document.title = "Fractalign | Profile";
-        get("/api/user", { userid: this.props.userId }).then((user) => this.setState({ user: user }));
-        get("/api/posts", { userid: this.props.userId }).then((postObjs) => {
+        get("/api/user", { user_id: this.props.userId }).then((user) => this.setState({ user: user }));
+        get("/api/posts", { user_id: this.props.userId }).then((postObjs) => {
             let reversed = postObjs.reverse();
             reversed.map((postObj) => {
                 this.setState({ posts: this.state.posts.concat([postObj])});

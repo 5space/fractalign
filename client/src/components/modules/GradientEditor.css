@@ -19,6 +19,7 @@
     width: 150%;
     height: 150%;
     margin: -25%;
+    cursor: pointer;
 }
 
 .GradientEditor-iterinput {
