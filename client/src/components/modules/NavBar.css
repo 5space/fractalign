@@ -30,3 +30,8 @@
 .NavBar-link + .NavBar-link {
   margin-left: var(--m);
 }
+
+.NavBar-userinfo {
+  margin-left: auto;
+  margin-right: var(--m);
+}

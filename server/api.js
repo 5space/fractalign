@@ -53,7 +53,7 @@ router.post("/comment", auth.ensureLoggedIn, (req, res) => {
         creator_id: req.user._id,
         creator_name: req.user.name,
         parent: req.body.parent,
-        content: req.body.content,
+        content: req.body.content
     });
 
     newComment.save().then((comment) => res.send(comment));

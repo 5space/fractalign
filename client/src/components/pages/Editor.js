@@ -40,7 +40,7 @@ class Editor extends Component {
     resetFractal = (type) => {
         type ||= this.state.fractal.fractalType;
         this.setState({fractal: JSON.parse(JSON.stringify(defaultFractals[type]))}, () => {
-            this.renderer.current.drawCanvas();
+            this.renderer.current.drawCanvasAsync();
         });
     }
 
@@ -80,7 +80,7 @@ class Editor extends Component {
     updateType = (event) => {
         var newFrac = JSON.parse(JSON.stringify(defaultFractals[event.target.value]));
         this.setState({fractal: newFrac}, () => {
-            this.renderer.current.drawCanvas();
+            this.renderer.current.drawCanvasAsync();
         });
     }
 
@@ -146,7 +146,7 @@ class Editor extends Component {
                     {this.getParamsList()}
                 </div>
                 <div className="Editor-buttonpanel u-flex">
-                    <button className="Editor-renderbutton u-bold" type="submit" onClick={() => this.renderer.current.drawCanvas()}>
+                    <button className="Editor-renderbutton u-bold" type="submit" onClick={() => this.renderer.current.drawCanvasAsync()}>
                         Render
                     </button>
                     <button className="Editor-resetbutton u-bold" type="submit" onClick={() => this.resetFractal()}>
@@ -158,7 +158,8 @@ class Editor extends Component {
             <div className="Editor-help">
                 <h3>Confused? Read this first!</h3>
                 <p>
-                    Fractals are mathematical shapes that are infinitely complex, so you can keep zooming in on the image above and find more detail!
+                    Fractals are mathematical shapes that are infinitely complex, so you can keep zooming in on the image above and find more detail!<br/>
+                    // TODO: Finish description
                 </p>
             </div>
         </>;

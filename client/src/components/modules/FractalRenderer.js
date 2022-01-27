@@ -75,8 +75,14 @@ class FractalRenderer extends Component {
         this.img && ctx.putImageData(this.img, 0, 0);
     }
 
+    drawCanvasAsync() {
+        setTimeout(function(){ 
+            this.drawCanvas();
+        }.bind(this), 0);
+    }
+
     componentDidMount() {
-        this.drawCanvas(this.canvasRef);
+        this.drawCanvasAsync();
     }
 
     mouseDown = (e) => {
@@ -116,7 +122,7 @@ class FractalRenderer extends Component {
         newFrac.y_max = newFrac.y_min + height * Math.max(this.recty1, this.recty2)/this.props.height;
         newFrac.y_min += height * Math.min(this.recty1, this.recty2)/this.props.height;
 
-        this.props.updateFractal && this.props.updateFractal(newFrac, (() => this.drawCanvas()).bind(this));
+        this.props.updateFractal && this.props.updateFractal(newFrac, (() => this.drawCanvasAsync()).bind(this));
         this.mouseOut();
     }
 
