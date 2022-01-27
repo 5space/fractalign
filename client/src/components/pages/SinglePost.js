@@ -25,19 +25,19 @@ class SinglePost extends Component {
         });
     }
 
-    getCommentsDisplay() {
-        if (!this.comments) return <span>No Comments</span>;
+    // getCommentsDisplay() {
+    //     if (!this.comments) return <span>No Comments</span>;
 
-        var commentsArr = [];
-        for (var comment of this.state.comments) {
-            console.log(comment);
-        }
+    //     var commentsArr = [];
+    //     for (var comment of this.state.comments) {
+    //         console.log(comment);
+    //     }
         
-        return <>
-            <span>Comments</span>
-            {commentsArr}
-        </>;
-    }
+    //     return <>
+    //         <span>Comments</span>
+    //         {commentsArr}
+    //     </>;
+    // }
 
     render() {
         return <>
@@ -49,8 +49,6 @@ class SinglePost extends Component {
                     {this.state.post.creator_name}
                 </Link> · {new Date(this.state.post.timestamp).toLocaleString()}</span>
                 <p className="SinglePost-description">{this.state.post.description}</p>
-                <hr/>
-                {this.getCommentsDisplay()}
             </div>
             : <span>Loading...</span>}
         </>;

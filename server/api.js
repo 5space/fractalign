@@ -1,7 +1,7 @@
 const express = require("express");
 
 // import models so we can interact with the database
-const Comment = require("./models/comment");
+// const Comment = require("./models/comment");
 const User = require("./models/user");
 const Post = require("./models/post");
 
@@ -40,24 +40,24 @@ router.get("/post", (req, res) => {
     });
 });
 
-router.get("/comments", (req, res) => {
-    if (req.query.post_id) {
-        Comment.find({ parent: req.query.post_id }).then((comments) => res.send(comments));
-    } else {
-        Comment.find({}).then((comments) => res.send(comments));
-    }
-});
+// router.get("/comments", (req, res) => {
+//     if (req.query.post_id) {
+//         Comment.find({ parent: req.query.post_id }).then((comments) => res.send(comments));
+//     } else {
+//         Comment.find({}).then((comments) => res.send(comments));
+//     }
+// });
 
-router.post("/comment", auth.ensureLoggedIn, (req, res) => {
-    const newComment = new Comment({
-        creator_id: req.user._id,
-        creator_name: req.user.name,
-        parent: req.body.parent,
-        content: req.body.content
-    });
+// router.post("/comment", auth.ensureLoggedIn, (req, res) => {
+//     const newComment = new Comment({
+//         creator_id: req.user._id,
+//         creator_name: req.user.name,
+//         parent: req.body.parent,
+//         content: req.body.content
+//     });
 
-    newComment.save().then((comment) => res.send(comment));
-});
+//     newComment.save().then((comment) => res.send(comment));
+// });
 
 router.post("/login", auth.login);
 router.post("/logout", auth.logout);
