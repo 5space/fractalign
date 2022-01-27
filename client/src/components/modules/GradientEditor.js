@@ -57,7 +57,7 @@ class GradientEditor extends Component {
 
     render() {
         return <div className="GradientEditor-container">
-            <div className="GradientEditor-gradient u-flex" style={this.getGradientStyle()}></div>
+            <div title="Click the colors below to change the gradient!" className="GradientEditor-gradient u-flex" style={this.getGradientStyle()}></div>
             <div className="GradientEditor-subcontainer u-flex">
                 {this.getInputItems()}
             </div>

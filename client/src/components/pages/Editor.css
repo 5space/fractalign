@@ -1,4 +1,8 @@
 .Editor-container {
+    width: 960px;
+}
+
+.Editor-editor {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: 10px;
@@ -8,7 +12,6 @@
     padding: var(--m);
     margin: 0 auto;
     margin-bottom: var(--l);
-    width: 960px;
 }
 
 .Editor-subcontainer {

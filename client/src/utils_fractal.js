@@ -309,7 +309,7 @@ export const iterateSingle = {
         
         if (iter == MAX_ITER) return NaN;
         else {
-            return iter - Math.log(Math.log(x*x + y*y))/Math.log(2);
+            return iter - Math.log(Math.log(x*x + y*y))/Math.log(p);
         }
     }
 };
